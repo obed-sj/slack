@@ -506,13 +506,13 @@ func (s PlainTextInputBlockElement) ElementType() MessageElementType {
 
 // NewPlainTextInputBlockElement returns an instance of a plain-text input
 // element
-func NewPlainTextInputBlockElement(placeholder *TextBlockObject, actionID string) *PlainTextInputBlockElement {
+func NewPlainTextInputBlockElement(placeholder *TextBlockObject, actionID string, multiline bool, min_length int) *PlainTextInputBlockElement {
 	return &PlainTextInputBlockElement{
 		Type:        METPlainTextInput,
 		ActionID:    actionID,
 		Placeholder: placeholder,
-		Multiline:   false,
-		MinLength:   0,
+		Multiline:   multiline,
+		MinLength:   min_length,
 	}
 }
 
