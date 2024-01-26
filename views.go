@@ -271,7 +271,7 @@ func (api *Client) PushViewContext(
 	return resp, resp.Err()
 }
 
-// UpdateView updates an existing view. Either externalID or viewID must be set, but not both.
+// UpdateView updates an existing view.
 func (api *Client) UpdateView(view ModalViewRequest, externalID, hash, viewID string) (*ViewResponse, error) {
 	return api.UpdateViewContext(context.Background(), view, externalID, hash, viewID)
 }
@@ -287,14 +287,10 @@ func (api *Client) UpdateViewContext(
 		return nil, ErrParametersMissing
 	}
 	req := updateViewRequest{
-		View: view,
-		Hash: hash,
-	}
-	// Only one of externalID or viewID should be set, slack will retun an error if both are set
-	if externalID != "" {
-		req.ExternalID = externalID
-	} else {
-		req.ViewID = viewID
+		View:       view,
+		ExternalID: externalID,
+		Hash:       hash,
+		ViewID:     viewID,
 	}
 	encoded, err := json.Marshal(req)
 	if err != nil {
