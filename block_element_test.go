@@ -48,7 +48,7 @@ func TestNewOptionsSelectBlockElement(t *testing.T) {
 	testOptionText := NewTextBlockObject("plain_text", "Option One", false, false)
 	testOption := NewOptionBlockObject("test", testOptionText, nil)
 
-	option := NewOptionsSelectBlockElement("static_select", nil, "test", testOption)
+	option := NewOptionsSelectBlockElement("static_select", nil, "test", nil, "", "", testOption)
 	assert.Equal(t, option.Type, "static_select")
 	assert.Equal(t, len(option.Options), 1)
 	assert.Nil(t, option.OptionGroups)
@@ -141,7 +141,7 @@ func TestNewDateTimePickerBlockElement(t *testing.T) {
 
 func TestNewPlainTextInputBlockElement(t *testing.T) {
 
-	plainTextInputElement := NewPlainTextInputBlockElement(nil, "test", false, 0)
+	plainTextInputElement := NewPlainTextInputBlockElement(nil, "test", "", false, 0)
 
 	assert.Equal(t, string(plainTextInputElement.Type), "plain_text_input")
 	assert.Equal(t, plainTextInputElement.ActionID, "test")
@@ -149,7 +149,7 @@ func TestNewPlainTextInputBlockElement(t *testing.T) {
 }
 
 func TestNewRichTextInputBlockElement(t *testing.T) {
-	richTextInputElement := NewRichTextInputBlockElement(nil, "test")
+	richTextInputElement := NewRichTextInputBlockElement(nil, "test", "")
 	assert.Equal(t, string(richTextInputElement.Type), "rich_text_input")
 	assert.Equal(t, richTextInputElement.ActionID, "test")
 }
@@ -184,7 +184,7 @@ func TestNewCheckboxGroupsBlockElement(t *testing.T) {
 	checkBoxOptionThree := NewOptionBlockObject("value-2", checkBoxOptionTextThree, checkBoxDescriptionTextThree)
 
 	// Build checkbox-group element
-	checkBoxGroupElement := NewCheckboxGroupsBlockElement("test", checkBoxOptionOne, checkBoxOptionTwo, checkBoxOptionThree)
+	checkBoxGroupElement := NewCheckboxGroupsBlockElement(nil, "test", checkBoxOptionOne, checkBoxOptionTwo, checkBoxOptionThree)
 
 	assert.Equal(t, string(checkBoxGroupElement.Type), "checkboxes")
 	assert.Equal(t, checkBoxGroupElement.ActionID, "test")
@@ -204,7 +204,7 @@ func TestNewRadioButtonsBlockElement(t *testing.T) {
 	radioButtonsOptionThree := NewOptionBlockObject("value-2", radioButtonsOptionTextThree, nil)
 
 	// Build radio button element
-	radioButtonsElement := NewRadioButtonsBlockElement("test", radioButtonsOptionOne, radioButtonsOptionTwo, radioButtonsOptionThree)
+	radioButtonsElement := NewRadioButtonsBlockElement(nil, "test", radioButtonsOptionOne, radioButtonsOptionTwo, radioButtonsOptionThree)
 
 	assert.Equal(t, string(radioButtonsElement.Type), "radio_buttons")
 	assert.Equal(t, radioButtonsElement.ActionID, "test")
@@ -214,7 +214,7 @@ func TestNewRadioButtonsBlockElement(t *testing.T) {
 
 func TestNewNumberInputBlockElement(t *testing.T) {
 
-	numberInputElement := NewNumberInputBlockElement(nil, "test", true)
+	numberInputElement := NewNumberInputBlockElement(nil, "test", true, "")
 
 	assert.Equal(t, string(numberInputElement.Type), "number_input")
 	assert.Equal(t, numberInputElement.ActionID, "test")

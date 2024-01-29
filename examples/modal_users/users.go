@@ -22,7 +22,7 @@ func main() {
 	channelNameText := slack.NewTextBlockObject(slack.PlainTextType, "Channel Name", false, false)
 	channelNameHint := slack.NewTextBlockObject(slack.PlainTextType, "Channel names may only contain lowercase letters, numbers, hyphens, and underscores, and must be 80 characters or less", false, false)
 	channelPlaceholder := slack.NewTextBlockObject(slack.PlainTextType, "New channel name", false, false)
-	channelNameElement := slack.NewPlainTextInputBlockElement(channelPlaceholder, "channel_name", false, 0)
+	channelNameElement := slack.NewPlainTextInputBlockElement(channelPlaceholder, "channel_name", "", false, 0)
 	// Slack channel names can be maximum 80 characters: https://api.slack.com/methods/conversations.create
 	channelNameElement.MaxLength = 80
 	channelNameBlock := slack.NewInputBlock("channel_name", channelNameText, channelNameHint, channelNameElement)
@@ -32,14 +32,14 @@ func main() {
 	// The user ID should start with "U" followed by 8 random characters
 	memberOptions := createOptionBlockObjects([]string{"U9911MMAA", "U2233KKNN", "U00112233"}, true)
 	inviteeText := slack.NewTextBlockObject(slack.PlainTextType, "Invitee from static list", false, false)
-	inviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeStatic, nil, "invitee", memberOptions...)
+	inviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeStatic, nil, "invitee", nil, "", "", memberOptions...)
 	inviteeBlock := slack.NewInputBlock("invitee", inviteeText, nil, inviteeOption)
 
 	// Section with users select - this input will not be included in the view_submission's view.state.values,
 	// but instead be sent as a "block_actions" request
 	additionalInviteeText := slack.NewTextBlockObject(slack.PlainTextType, "Invitee from complete list of users", false, false)
 	additionalInviteeHintText := slack.NewTextBlockObject(slack.PlainTextType, "", false, false)
-	additionalInviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeUser, additionalInviteeText, "user")
+	additionalInviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeUser, additionalInviteeText, "user", nil, "", "", nil)
 	additionalInviteeSection := slack.NewSectionBlock(additionalInviteeText, nil, slack.NewAccessory(additionalInviteeOption))
 
 	// Input with users select - this input will be included in the view_submission's view.state.values
@@ -48,13 +48,13 @@ func main() {
 
 	checkboxTxt := slack.NewTextBlockObject(slack.PlainTextType, "Checkbox", false, false)
 	checkboxOptions := createOptionBlockObjects([]string{"option 1", "option 2", "option 3"}, false)
-	checkboxOptionsBlock := slack.NewCheckboxGroupsBlockElement("chkbox", checkboxOptions...)
+	checkboxOptionsBlock := slack.NewCheckboxGroupsBlockElement(nil, "chkbox", checkboxOptions...)
 	checkboxBlock := slack.NewInputBlock("chkbox", checkboxTxt, nil, checkboxOptionsBlock)
 
 	summaryText := slack.NewTextBlockObject(slack.PlainTextType, "Summary", false, false)
 	summaryHint := slack.NewTextBlockObject(slack.PlainTextType, "Summary Hint", false, false)
 	summaryPlaceholder := slack.NewTextBlockObject(slack.PlainTextType, "Summary of reason for creating channel", false, false)
-	summaryElement := slack.NewPlainTextInputBlockElement(summaryPlaceholder, "summary", false, 0)
+	summaryElement := slack.NewPlainTextInputBlockElement(summaryPlaceholder, "summary", "", false, 0)
 	// Just set an arbitrary max length to avoid too prose summary
 	summaryElement.MaxLength = 200
 	summaryElement.Multiline = true

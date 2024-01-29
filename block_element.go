@@ -243,12 +243,15 @@ func (s SelectBlockElement) ElementType() MessageElementType {
 
 // NewOptionsSelectBlockElement returns a new instance of SelectBlockElement for use with
 // the Options object only.
-func NewOptionsSelectBlockElement(optType string, placeholder *TextBlockObject, actionID string, options ...*OptionBlockObject) *SelectBlockElement {
+func NewOptionsSelectBlockElement(optType string, placeholder *TextBlockObject, actionID string, initialOption *OptionBlockObject, initialUser string, initialChannel string, options ...*OptionBlockObject) *SelectBlockElement {
 	return &SelectBlockElement{
-		Type:        optType,
-		Placeholder: placeholder,
-		ActionID:    actionID,
-		Options:     options,
+		Type:           optType,
+		Placeholder:    placeholder,
+		ActionID:       actionID,
+		Options:        options,
+		InitialUser:    initialUser,
+		InitialChannel: initialChannel,
+		InitialOption:  initialOption,
 	}
 }
 
@@ -506,13 +509,14 @@ func (s PlainTextInputBlockElement) ElementType() MessageElementType {
 
 // NewPlainTextInputBlockElement returns an instance of a plain-text input
 // element
-func NewPlainTextInputBlockElement(placeholder *TextBlockObject, actionID string, multiline bool, min_length int) *PlainTextInputBlockElement {
+func NewPlainTextInputBlockElement(placeholder *TextBlockObject, actionID string, initialValue string, multiline bool, min_length int) *PlainTextInputBlockElement {
 	return &PlainTextInputBlockElement{
-		Type:        METPlainTextInput,
-		ActionID:    actionID,
-		Placeholder: placeholder,
-		Multiline:   multiline,
-		MinLength:   min_length,
+		Type:         METPlainTextInput,
+		ActionID:     actionID,
+		InitialValue: initialValue,
+		Placeholder:  placeholder,
+		Multiline:    multiline,
+		MinLength:    min_length,
 	}
 }
 
@@ -534,11 +538,12 @@ func (s RichTextInputBlockElement) ElementType() MessageElementType {
 }
 
 // NewRichTextInputBlockElement returns an instance of a rich-text input element
-func NewRichTextInputBlockElement(placeholder *TextBlockObject, actionID string) *RichTextInputBlockElement {
+func NewRichTextInputBlockElement(placeholder *TextBlockObject, actionID string, initialValue string) *RichTextInputBlockElement {
 	return &RichTextInputBlockElement{
-		Type:        METRichTextInput,
-		ActionID:    actionID,
-		Placeholder: placeholder,
+		Type:         METRichTextInput,
+		ActionID:     actionID,
+		Placeholder:  placeholder,
+		InitialValue: initialValue,
 	}
 }
 
@@ -560,11 +565,12 @@ func (c CheckboxGroupsBlockElement) ElementType() MessageElementType {
 }
 
 // NewCheckboxGroupsBlockElement returns an instance of a checkbox-group block element
-func NewCheckboxGroupsBlockElement(actionID string, options ...*OptionBlockObject) *CheckboxGroupsBlockElement {
+func NewCheckboxGroupsBlockElement(initialOptions []*OptionBlockObject, actionID string, options ...*OptionBlockObject) *CheckboxGroupsBlockElement {
 	return &CheckboxGroupsBlockElement{
-		Type:     METCheckboxGroups,
-		ActionID: actionID,
-		Options:  options,
+		Type:           METCheckboxGroups,
+		ActionID:       actionID,
+		Options:        options,
+		InitialOptions: initialOptions,
 	}
 }
 
@@ -586,11 +592,12 @@ func (s RadioButtonsBlockElement) ElementType() MessageElementType {
 }
 
 // NewRadioButtonsBlockElement returns an instance of a radio buttons element.
-func NewRadioButtonsBlockElement(actionID string, options ...*OptionBlockObject) *RadioButtonsBlockElement {
+func NewRadioButtonsBlockElement(initialOption *OptionBlockObject, actionID string, options ...*OptionBlockObject) *RadioButtonsBlockElement {
 	return &RadioButtonsBlockElement{
-		Type:     METRadioButtons,
-		ActionID: actionID,
-		Options:  options,
+		Type:          METRadioButtons,
+		ActionID:      actionID,
+		Options:       options,
+		InitialOption: initialOption,
 	}
 }
 
@@ -616,12 +623,13 @@ func (s NumberInputBlockElement) ElementType() MessageElementType {
 }
 
 // NewNumberInputBlockElement returns an instance of a number input element
-func NewNumberInputBlockElement(placeholder *TextBlockObject, actionID string, isDecimalAllowed bool) *NumberInputBlockElement {
+func NewNumberInputBlockElement(placeholder *TextBlockObject, actionID string, isDecimalAllowed bool, initialValue string) *NumberInputBlockElement {
 	return &NumberInputBlockElement{
 		Type:             METNumber,
 		ActionID:         actionID,
 		Placeholder:      placeholder,
 		IsDecimalAllowed: isDecimalAllowed,
+		InitialValue:     initialValue,
 	}
 }
 
