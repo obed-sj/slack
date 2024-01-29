@@ -297,12 +297,13 @@ func (s MultiSelectBlockElement) ElementType() MessageElementType {
 
 // NewOptionsMultiSelectBlockElement returns a new instance of SelectBlockElement for use with
 // the Options object only.
-func NewOptionsMultiSelectBlockElement(optType string, placeholder *TextBlockObject, actionID string, options ...*OptionBlockObject) *MultiSelectBlockElement {
+func NewOptionsMultiSelectBlockElement(optType string, placeholder *TextBlockObject, initialOptions []*OptionBlockObject, actionID string, options ...*OptionBlockObject) *MultiSelectBlockElement {
 	return &MultiSelectBlockElement{
-		Type:        optType,
-		Placeholder: placeholder,
-		ActionID:    actionID,
-		Options:     options,
+		Type:           optType,
+		Placeholder:    placeholder,
+		ActionID:       actionID,
+		InitialOptions: initialOptions,
+		Options:        options,
 	}
 }
 

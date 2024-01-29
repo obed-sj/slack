@@ -76,7 +76,7 @@ func TestNewOptionsMultiSelectBlockElement(t *testing.T) {
 	testDescriptionText := NewTextBlockObject("plain_text", "Description One", false, false)
 	testOption := NewOptionBlockObject("test", testOptionText, testDescriptionText)
 
-	option := NewOptionsMultiSelectBlockElement("static_select", nil, "test", testOption)
+	option := NewOptionsMultiSelectBlockElement("static_select", nil, nil, "test", testOption)
 	assert.Equal(t, option.Type, "static_select")
 	assert.Equal(t, len(option.Options), 1)
 	assert.Nil(t, option.OptionGroups)
