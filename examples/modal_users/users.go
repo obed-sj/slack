@@ -25,7 +25,7 @@ func main() {
 	channelNameElement := slack.NewPlainTextInputBlockElement(channelPlaceholder, "channel_name", "", false, 0)
 	// Slack channel names can be maximum 80 characters: https://api.slack.com/methods/conversations.create
 	channelNameElement.MaxLength = 80
-	channelNameBlock := slack.NewInputBlock("channel_name", channelNameText, channelNameHint, channelNameElement)
+	channelNameBlock := slack.NewInputBlock("channel_name", channelNameText, channelNameHint, channelNameElement, false, false)
 
 	// Provide a static list of users to choose from, those provided now are just made up user IDs
 	// Get user IDs by right clicking on them in Slack, select "Copy link", and inspect the last part of the link
@@ -33,7 +33,7 @@ func main() {
 	memberOptions := createOptionBlockObjects([]string{"U9911MMAA", "U2233KKNN", "U00112233"}, true)
 	inviteeText := slack.NewTextBlockObject(slack.PlainTextType, "Invitee from static list", false, false)
 	inviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeStatic, nil, "invitee", nil, "", "", memberOptions...)
-	inviteeBlock := slack.NewInputBlock("invitee", inviteeText, nil, inviteeOption)
+	inviteeBlock := slack.NewInputBlock("invitee", inviteeText, nil, inviteeOption, false, false)
 
 	// Section with users select - this input will not be included in the view_submission's view.state.values,
 	// but instead be sent as a "block_actions" request
@@ -44,12 +44,12 @@ func main() {
 
 	// Input with users select - this input will be included in the view_submission's view.state.values
 	// It can be fetched as for example "payload.View.State.Values["user"]["user"].SelectedUser"
-	additionalInviteeBlock := slack.NewInputBlock("user", additionalInviteeText, additionalInviteeHintText, additionalInviteeOption)
+	additionalInviteeBlock := slack.NewInputBlock("user", additionalInviteeText, additionalInviteeHintText, additionalInviteeOption, false, false)
 
 	checkboxTxt := slack.NewTextBlockObject(slack.PlainTextType, "Checkbox", false, false)
 	checkboxOptions := createOptionBlockObjects([]string{"option 1", "option 2", "option 3"}, false)
 	checkboxOptionsBlock := slack.NewCheckboxGroupsBlockElement(nil, "chkbox", checkboxOptions...)
-	checkboxBlock := slack.NewInputBlock("chkbox", checkboxTxt, nil, checkboxOptionsBlock)
+	checkboxBlock := slack.NewInputBlock("chkbox", checkboxTxt, nil, checkboxOptionsBlock, false, false)
 
 	summaryText := slack.NewTextBlockObject(slack.PlainTextType, "Summary", false, false)
 	summaryHint := slack.NewTextBlockObject(slack.PlainTextType, "Summary Hint", false, false)
@@ -58,7 +58,7 @@ func main() {
 	// Just set an arbitrary max length to avoid too prose summary
 	summaryElement.MaxLength = 200
 	summaryElement.Multiline = true
-	summaryBlock := slack.NewInputBlock("summary", summaryText, summaryHint, summaryElement)
+	summaryBlock := slack.NewInputBlock("summary", summaryText, summaryHint, summaryElement, false, false)
 
 	blocks := slack.Blocks{
 		BlockSet: []slack.Block{

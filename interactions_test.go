@@ -265,6 +265,8 @@ func TestViewSubmissionCallback(t *testing.T) {
 							ActionID:  "ml-value",
 							Multiline: true,
 						},
+						false,
+						false,
 					),
 					NewInputBlock(
 						"target_channel",
@@ -281,6 +283,8 @@ func TestViewSubmissionCallback(t *testing.T) {
 							DefaultToCurrentConversation: true,
 							ResponseURLEnabled:           true,
 						},
+						false,
+						false,
 					),
 				},
 			},

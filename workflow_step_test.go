@@ -129,6 +129,8 @@ func configModalBlocks() Blocks {
 		NewTextBlockObject("plain_text", "Select an option", false, false),
 		NewTextBlockObject("plain_text", "Hint", false, false),
 		selection,
+		false,
+		false,
 	)
 
 	blocks := Blocks{
