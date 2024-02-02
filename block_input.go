@@ -19,12 +19,14 @@ func (s InputBlock) BlockType() MessageBlockType {
 }
 
 // NewInputBlock returns a new instance of an input block
-func NewInputBlock(blockID string, label, hint *TextBlockObject, element BlockElement) *InputBlock {
+func NewInputBlock(blockID string, label, hint *TextBlockObject, element BlockElement, optional bool, dispatchAction bool) *InputBlock {
 	return &InputBlock{
-		Type:    MBTInput,
-		BlockID: blockID,
-		Label:   label,
-		Element: element,
-		Hint:    hint,
+		Type:           MBTInput,
+		BlockID:        blockID,
+		Label:          label,
+		Element:        element,
+		Hint:           hint,
+		Optional:       optional,
+		DispatchAction: dispatchAction,
 	}
 }
