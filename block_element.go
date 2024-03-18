@@ -348,11 +348,12 @@ func (s OverflowBlockElement) ElementType() MessageElementType {
 }
 
 // NewOverflowBlockElement returns an instance of a new Overflow Block Element
-func NewOverflowBlockElement(actionID string, options ...*OptionBlockObject) *OverflowBlockElement {
+func NewOverflowBlockElement(actionID string, confirm *ConfirmationBlockObject, options ...*OptionBlockObject) *OverflowBlockElement {
 	return &OverflowBlockElement{
 		Type:     METOverflow,
 		ActionID: actionID,
 		Options:  options,
+		Confirm:  confirm,
 	}
 }
 

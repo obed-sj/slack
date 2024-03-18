@@ -110,7 +110,7 @@ func TestNewOverflowBlockElement(t *testing.T) {
 	overflowOptionThree := NewOptionBlockObject("value-2", overflowOptionTextThree, nil)
 
 	// Build overflow section
-	overflowElement := NewOverflowBlockElement("test", overflowOptionOne, overflowOptionTwo, overflowOptionThree)
+	overflowElement := NewOverflowBlockElement("test", nil, overflowOptionOne, overflowOptionTwo, overflowOptionThree)
 
 	assert.Equal(t, string(overflowElement.Type), "overflow")
 	assert.Equal(t, overflowElement.ActionID, "test")

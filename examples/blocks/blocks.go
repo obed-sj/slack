@@ -288,7 +288,7 @@ func exampleFive() {
 	overflowOptionThree := slack.NewOptionBlockObject("value-2", overflowOptionTextThree, nil)
 
 	// Build overflow section
-	overflow := slack.NewOverflowBlockElement("", overflowOptionOne, overflowOptionTwo, overflowOptionThree)
+	overflow := slack.NewOverflowBlockElement("", nil, overflowOptionOne, overflowOptionTwo, overflowOptionThree)
 
 	// Create the header section
 	headerSection := slack.NewSectionBlock(headerText, nil, slack.NewAccessory(overflow))
