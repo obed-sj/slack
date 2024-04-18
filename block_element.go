@@ -330,14 +330,19 @@ func (s MultiSelectBlockElement) ElementType() MessageElementType {
 
 // NewOptionsMultiSelectBlockElement returns a new instance of SelectBlockElement for use with
 // the Options object only.
-func NewOptionsMultiSelectBlockElement(optType string, placeholder *TextBlockObject, initialOptions []*OptionBlockObject, actionID string, options ...*OptionBlockObject) *MultiSelectBlockElement {
+func NewOptionsMultiSelectBlockElement(optType string, placeholder *TextBlockObject, actionID string, options ...*OptionBlockObject) *MultiSelectBlockElement {
 	return &MultiSelectBlockElement{
-		Type:           optType,
-		Placeholder:    placeholder,
-		ActionID:       actionID,
-		InitialOptions: initialOptions,
-		Options:        options,
+		Type:        optType,
+		Placeholder: placeholder,
+		ActionID:    actionID,
+		Options:     options,
 	}
+}
+
+// WithInitialOptions sets the initial options for the multi-select element
+func (s *MultiSelectBlockElement) WithInitialOptions(options ...*OptionBlockObject) *MultiSelectBlockElement {
+	s.InitialOptions = options
+	return s
 }
 
 // NewOptionsGroupMultiSelectBlockElement returns a new instance of MultiSelectBlockElement for use with
