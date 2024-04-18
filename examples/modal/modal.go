@@ -36,13 +36,13 @@ func generateModalRequest() slack.ModalViewRequest {
 	firstNamePlaceholder := slack.NewTextBlockObject("plain_text", "Enter your first name", false, false)
 	firstNameElement := slack.NewPlainTextInputBlockElement(firstNamePlaceholder, "firstName", "", false, 0)
 	// Notice that blockID is a unique identifier for a block
-	firstName := slack.NewInputBlock("First Name", firstNameText, firstNameHint, firstNameElement, false, false)
+	firstName := slack.NewInputBlock("First Name", firstNameText, firstNameHint, firstNameElement)
 
 	lastNameText := slack.NewTextBlockObject("plain_text", "Last Name", false, false)
 	lastNameHint := slack.NewTextBlockObject("plain_text", "Last Name Hint", false, false)
 	lastNamePlaceholder := slack.NewTextBlockObject("plain_text", "Enter your first name", false, false)
 	lastNameElement := slack.NewPlainTextInputBlockElement(lastNamePlaceholder, "lastName", "", false, 0)
-	lastName := slack.NewInputBlock("Last Name", lastNameText, lastNameHint, lastNameElement, false, false)
+	lastName := slack.NewInputBlock("Last Name", lastNameText, lastNameHint, lastNameElement)
 
 	blocks := slack.Blocks{
 		BlockSet: []slack.Block{
