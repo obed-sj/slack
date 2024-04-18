@@ -109,9 +109,6 @@ func createSelection(options []*OptionBlockObject) *SelectBlockElement {
 		"static_select",
 		NewTextBlockObject("plain_text", "your choice", false, false),
 		IDExampleSelectInput,
-		nil,
-		"",
-		"",
 		options...,
 	)
 }

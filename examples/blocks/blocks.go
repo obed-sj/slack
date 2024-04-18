@@ -369,7 +369,7 @@ func exampleSix() {
 	readOpt := slack.NewOptionBlockObject("value-1", readTxt, nil)
 	saveOpt := slack.NewOptionBlockObject("value-2", saveTxt, nil)
 
-	availableOption := slack.NewOptionsSelectBlockElement("static_select", manageTxt, "", nil, "", "", editOpt, readOpt, saveOpt)
+	availableOption := slack.NewOptionsSelectBlockElement("static_select", manageTxt, "", editOpt, readOpt, saveOpt)
 
 	// Header Section
 	headerText := slack.NewTextBlockObject("mrkdwn", ":mag: Search results for *Cata*", false, false)

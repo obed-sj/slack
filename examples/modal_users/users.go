@@ -32,14 +32,14 @@ func main() {
 	// The user ID should start with "U" followed by 8 random characters
 	memberOptions := createOptionBlockObjects([]string{"U9911MMAA", "U2233KKNN", "U00112233"}, true)
 	inviteeText := slack.NewTextBlockObject(slack.PlainTextType, "Invitee from static list", false, false)
-	inviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeStatic, nil, "invitee", nil, "", "", memberOptions...)
+	inviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeStatic, nil, "invitee", memberOptions...)
 	inviteeBlock := slack.NewInputBlock("invitee", inviteeText, nil, inviteeOption, false, false)
 
 	// Section with users select - this input will not be included in the view_submission's view.state.values,
 	// but instead be sent as a "block_actions" request
 	additionalInviteeText := slack.NewTextBlockObject(slack.PlainTextType, "Invitee from complete list of users", false, false)
 	additionalInviteeHintText := slack.NewTextBlockObject(slack.PlainTextType, "", false, false)
-	additionalInviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeUser, additionalInviteeText, "user", nil, "", "", nil)
+	additionalInviteeOption := slack.NewOptionsSelectBlockElement(slack.OptTypeUser, additionalInviteeText, "user", nil)
 	additionalInviteeSection := slack.NewSectionBlock(additionalInviteeText, nil, slack.NewAccessory(additionalInviteeOption))
 
 	// Input with users select - this input will be included in the view_submission's view.state.values
