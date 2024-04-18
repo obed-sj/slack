@@ -182,7 +182,7 @@ func (s *ButtonBlockElement) WithConfirm(confirm *ConfirmationBlockObject) *Butt
 	return s
 }
 
-// WithURL adds a URL to the button object and returns the modified ButtonBlockElement
+// WithURL adds a URL for the button to link to and returns the modified ButtonBlockElement
 func (s *ButtonBlockElement) WithURL(url string) *ButtonBlockElement {
 	s.URL = url
 	return s

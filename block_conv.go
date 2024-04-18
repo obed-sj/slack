@@ -2,7 +2,6 @@ package slack
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 )
 
@@ -139,7 +138,7 @@ func (b *InputBlock) UnmarshalJSON(data []byte) error {
 	case "file_input":
 		e = &FileInputBlockElement{}
 	default:
-		return errors.New("unsupported block element type")
+		return fmt.Errorf("unsupported block element type %v", s.TypeVal)
 	}
 
 	if err := json.Unmarshal(a.Element, e); err != nil {
@@ -445,7 +444,7 @@ func (e *ContextElements) UnmarshalJSON(data []byte) error {
 
 			e.Elements = append(e.Elements, elem.(*ImageBlockElement))
 		default:
-			return errors.New("unsupported context element type")
+			return fmt.Errorf("unsupported context element type %v", contextElementType)
 		}
 	}
 
