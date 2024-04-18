@@ -22,7 +22,7 @@ func main() {
 	channelNameText := slack.NewTextBlockObject(slack.PlainTextType, "Channel Name", false, false)
 	channelNameHint := slack.NewTextBlockObject(slack.PlainTextType, "Channel names may only contain lowercase letters, numbers, hyphens, and underscores, and must be 80 characters or less", false, false)
 	channelPlaceholder := slack.NewTextBlockObject(slack.PlainTextType, "New channel name", false, false)
-	channelNameElement := slack.NewPlainTextInputBlockElement(channelPlaceholder, "channel_name", "", false, 0)
+	channelNameElement := slack.NewPlainTextInputBlockElement(channelPlaceholder, "channel_name")
 	// Slack channel names can be maximum 80 characters: https://api.slack.com/methods/conversations.create
 	channelNameElement.MaxLength = 80
 	channelNameBlock := slack.NewInputBlock("channel_name", channelNameText, channelNameHint, channelNameElement)
@@ -54,7 +54,7 @@ func main() {
 	summaryText := slack.NewTextBlockObject(slack.PlainTextType, "Summary", false, false)
 	summaryHint := slack.NewTextBlockObject(slack.PlainTextType, "Summary Hint", false, false)
 	summaryPlaceholder := slack.NewTextBlockObject(slack.PlainTextType, "Summary of reason for creating channel", false, false)
-	summaryElement := slack.NewPlainTextInputBlockElement(summaryPlaceholder, "summary", "", false, 0)
+	summaryElement := slack.NewPlainTextInputBlockElement(summaryPlaceholder, "summary")
 	// Just set an arbitrary max length to avoid too prose summary
 	summaryElement.MaxLength = 200
 	summaryElement.Multiline = true

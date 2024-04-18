@@ -554,15 +554,36 @@ func (s PlainTextInputBlockElement) ElementType() MessageElementType {
 
 // NewPlainTextInputBlockElement returns an instance of a plain-text input
 // element
-func NewPlainTextInputBlockElement(placeholder *TextBlockObject, actionID string, initialValue string, multiline bool, min_length int) *PlainTextInputBlockElement {
+func NewPlainTextInputBlockElement(placeholder *TextBlockObject, actionID string) *PlainTextInputBlockElement {
 	return &PlainTextInputBlockElement{
-		Type:         METPlainTextInput,
-		ActionID:     actionID,
-		InitialValue: initialValue,
-		Placeholder:  placeholder,
-		Multiline:    multiline,
-		MinLength:    min_length,
+		Type:        METPlainTextInput,
+		ActionID:    actionID,
+		Placeholder: placeholder,
 	}
+}
+
+// WithInitialValue sets the initial value for the plain-text input element
+func (s *PlainTextInputBlockElement) WithInitialValue(initialValue string) *PlainTextInputBlockElement {
+	s.InitialValue = initialValue
+	return s
+}
+
+// WithMinLength sets the minimum length for the plain-text input element
+func (s *PlainTextInputBlockElement) WithMinLength(minLength int) *PlainTextInputBlockElement {
+	s.MinLength = minLength
+	return s
+}
+
+// WithMaxLength sets the maximum length for the plain-text input element
+func (s *PlainTextInputBlockElement) WithMaxLength(maxLength int) *PlainTextInputBlockElement {
+	s.MaxLength = maxLength
+	return s
+}
+
+// WithMultiline sets the multiline property for the plain-text input element
+func (s *PlainTextInputBlockElement) WithMultiline(multiline bool) *PlainTextInputBlockElement {
+	s.Multiline = multiline
+	return s
 }
 
 // RichTextInputBlockElement creates a field where allows users to enter formatted text
